@@ -20,7 +20,7 @@ async function Get_Data_From_Localstorage() {
     console.log(error.message);
   }
 }
-
+ 
 async function loadDataSource() {}
 
 function displayData(dataArray) {
