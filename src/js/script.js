@@ -14,6 +14,7 @@ async function Get_Data_From_Localstorage() {
     const result = await response.json();
     Database.data = result.response;
 	console.log(Database);
+	Save_Data();
     //return result;
   } catch (error) {
     console.log(error.message);
