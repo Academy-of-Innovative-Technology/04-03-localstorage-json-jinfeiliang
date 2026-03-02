@@ -3,46 +3,32 @@ var Database = {
   data: [],
 };
 
+let Personal_Information_List_DOM = document.querySelector("#Personal_Information_List");
 
-async function Get_Data_From_Localstorage() {
-  try {
-    const response = await fetch("api.json");
-    if (!response.ok) {
-      throw new Error(`Reponse status: ${response.status}`);
-    }
+let Powers_Information_List_DOM = document.querySelector("#Powers_Information_List");
 
-    const result = await response.json();
-    Database.data = result.response;
-	console.log(Database);
-	Save_Data();
-    //return result;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
- 
-async function loadDataSource() {}
+let Affiliation_Information_List = document.querySelector("#Affiliation_Information_List");
 
 function displayData(dataArray) {
-  console.log(dataArray);
+  dataArray.forEach ( (Character) => {
+    console.log(Character);
+    let Personal_Info_List = Object.values(Character.profile);
+    console.log(Personal_Info_List);
+    
+  
+  });
 }
 
-function Save_Data() {
-	if (Database.data != [] && Database.data != "" && Database.data != "") {
-		let Formatted = {"response": Database.data}
-		localStorage.setItem(Database.keyName, JSON.stringify(Formatted))
-	}
-}
+
 
 function Load_Data() {
   let Data = JSON.parse(localStorage.getItem(Database.keyName));
   if (Data != [] && Data != undefined && Data != "") {
-    Database.data = Data;
+    Database.data = Data.response;
   } else {
-    Get_Data_From_Localstorage().then(() => {
-      loadDataSource();
-	  console.log(Database.data);
-    });
+    console.log("Error when retrieving localstorage");
   }
 }
 Load_Data();
+displayData(Database.data);
+
