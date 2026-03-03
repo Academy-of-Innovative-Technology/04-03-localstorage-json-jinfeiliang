@@ -17,6 +17,13 @@ var Database = {
 
 let Mutants_Container = document.querySelector(".Mutants_Container");
 
+let Color_Classes = ["bg-primary", "bg-primary-subtle", "bg-success", "bg-danger", "bg-warning", "bg-info"];
+
+function randomColor() {
+  let Random = Math.floor(Math.random() * (Color_Classes.length - 1));
+  return Color_Classes[Random];
+}
+
 function displayData(dataArray) {
   Mutants_Container.innerHTML = "";
   dataArray.forEach((Character) => {
@@ -25,10 +32,23 @@ function displayData(dataArray) {
     let Personal_Info_LI = "";
     Object.entries(Character.profile).forEach(
       ([key, value]) => {
-        let HTML = `<li>${key}: ${value}</li>`;
+        let HTML = `<li><span class="fw-bold text-capitalize">${key}:</span> ${value}</li>`;
         Personal_Info_LI += HTML;
       },
     );
+
+    let Powers_Info_LI = "";
+    Character.powers.forEach( (power) => {
+      let HTML = `<li>${power}</li>`;
+        Powers_Info_LI += HTML;
+    })
+
+    let Affiliation_Info_LI = "";
+    Character.affiliation.forEach( (affiliation) => {
+      let HTML = `<li class="list-inline-item badge bg-primary ${randomColor()}">${affiliation}</li>`;
+        Affiliation_Info_LI += HTML;
+    })
+    
 
       let HTML = `<div class="col">
       <div class="card shadow-lg">
@@ -44,20 +64,12 @@ function displayData(dataArray) {
 
           <h6 class="fw-bold">Powers</h6>
           <ul id="Powers_Information_List" class="list-unstyled">
-            <li>Heightened Senses</li>
-            <li>Regeneration</li>
-            <li>Superhuman Strength</li>
-            <li>Superhuman Strength</li>
-            <li>Superhuman Strength</li>
-            <li>Superhuman Strength</li>
+            ${Powers_Info_LI}
           </ul>
 
           <h6 class="fw-bold">Affiliation</h6>
           <ul id="Affiliation_Information_List" class="list-inline">
-            <li class="list-inline-item badge bg-primary">X-MEN</li>
-            <li class="list-inline-item badge bg-primary">X-Factor</li>
-            <li class="list-inline-item badge bg-primary">Brotherhood</li>
-            <li class="list-inline-item badge bg-primary">Avengers</li>
+            ${Affiliation_Info_LI}
           </ul>
 
 
