@@ -17,7 +17,7 @@ var Database = {
 
 let Mutants_Container = document.querySelector(".Mutants_Container");
 
-let Color_Classes = ["bg-primary", "bg-primary-subtle", "bg-success", "bg-danger", "bg-warning", "bg-info"];
+let Color_Classes = ["bg-primary", "bg-success", "bg-danger", "bg-warning", "bg-info"];
 
 function randomColor() {
   let Random = Math.floor(Math.random() * (Color_Classes.length - 1));
