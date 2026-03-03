@@ -19,9 +19,25 @@ let Mutants_Container = document.querySelector(".Mutants_Container");
 
 let Color_Classes = ["bg-primary", "bg-success", "bg-danger", "bg-warning", "bg-info"];
 
+let Predetermined_Color_Affiliation = {
+  "X-MEN": "bg-primary",
+  "X-Factor": "bg-success",
+  "Brotherhood": "bg-danger",
+  "Phoenix Force": "bg-danger",
+  "Avengers": "bg-warning",
+};
+
 function randomColor() {
   let Random = Math.floor(Math.random() * (Color_Classes.length - 1));
   return Color_Classes[Random];
+}
+
+function GetColor(Affiliation) {
+  if (Predetermined_Color_Affiliation[Affiliation]) {
+    return Predetermined_Color_Affiliation[Affiliation];
+  } else {
+    return randomColor();
+  }
 }
 
 function displayData(dataArray) {
@@ -45,7 +61,7 @@ function displayData(dataArray) {
 
     let Affiliation_Info_LI = "";
     Character.affiliation.forEach( (affiliation) => {
-      let HTML = `<li class="list-inline-item badge bg-primary ${randomColor()}">${affiliation}</li>`;
+      let HTML = `<li class="list-inline-item badge bg-primary ${GetColor(affiliation)}">${affiliation}</li>`;
         Affiliation_Info_LI += HTML;
     })
     
