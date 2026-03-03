@@ -26,7 +26,7 @@ let Predetermined_Color_Affiliation = {
   "Phoenix Force": "bg-danger",
   "Avengers": "bg-warning",
 };
-
+  
 function randomColor() {
   let Random = Math.floor(Math.random() * (Color_Classes.length - 1));
   return Color_Classes[Random];
